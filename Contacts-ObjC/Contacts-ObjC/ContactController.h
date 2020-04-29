@@ -1,20 +1,20 @@
 //
-//  ContactsDetailViewController.h
+//  ContactController.h
 //  Contacts-ObjC
 //
 //  Created by Craig Swanson on 4/28/20.
 //  Copyright © 2020 craigswanson. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class Contact;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactsDetailViewController : UIViewController
+@interface ContactController : NSObject
 
-@property (nonatomic, retain) Contact *contact;
+@property (nonatomic, retain) NSArray<Contact *> *contacts;
 
 @end
 

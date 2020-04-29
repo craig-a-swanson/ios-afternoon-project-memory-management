@@ -126,6 +126,12 @@
                     <navigationItem key="navigationItem" id="UQR-QR-RSS">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="4XH-5x-5Mw"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="ZfT-DB-U1S" id="e01-7z-rq6"/>
+                        <outlet property="firstNameTextField" destination="WVS-3b-5hf" id="yc3-fa-cOz"/>
+                        <outlet property="lastNameTextField" destination="z64-WG-tcA" id="175-yU-ixh"/>
+                        <outlet property="phoneTextField" destination="617-L6-B2A" id="dZq-Bn-uYV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UT8-ZV-83y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
