@@ -10,4 +10,23 @@
 
 @implementation Contact
 
+- (instancetype)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email phoneNumber:(NSString *)phoneNumber {
+    
+    if (self = [super init]) {
+        _firstName = firstName;
+        _lastName = lastName;
+        _email = email;
+        _phoneNumber = phoneNumber;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [_firstName release];
+    [_lastName release];
+    [_email release];
+    [_phoneNumber release];
+    [super dealloc];
+}
+
 @end
