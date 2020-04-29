@@ -13,10 +13,10 @@
 - (instancetype)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email phoneNumber:(NSString *)phoneNumber {
     
     if (self = [super init]) {
-        _firstName = firstName;
-        _lastName = lastName;
-        _email = email;
-        _phoneNumber = phoneNumber;
+        _firstName = [firstName copy];
+        _lastName = [lastName copy];
+        _email = [email copy];
+        _phoneNumber = [phoneNumber copy];
     }
     return self;
 }
