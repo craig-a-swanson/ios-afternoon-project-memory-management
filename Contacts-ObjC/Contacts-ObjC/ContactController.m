@@ -22,6 +22,9 @@
     self = [super init];
     if (self) {
         [self addTestData];
+        NSSortDescriptor *lastNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES];
+        NSArray *sortedContacts = [self.internalContacts sortedArrayUsingDescriptors:@[lastNameSortDescriptor]];
+        self.internalContacts = [NSMutableArray arrayWithArray:sortedContacts];
     }
     return self;
 }
@@ -39,7 +42,9 @@
 
 - (void)addTestData {
     [self.internalContacts addObjectsFromArray:@[
-        [[[Contact alloc] initWithFirstName:@"Henry" lastName:@"Hickenbaum" email:@"thehickbaum@hotmail.com" phoneNumber:@"555-555-5555"] autorelease]
+        [[[Contact alloc] initWithFirstName:@"Henry" lastName:@"Hickenbaum" email:@"thehickbaum@hotmail.com" phoneNumber:@"555-555-5555"] autorelease],
+        [[[Contact alloc] initWithFirstName:@"Beverly" lastName:@"Lancaster" email:@"blancaster32@tufts.edu" phoneNumber:@"111-222-3333"] autorelease],
+        [[[Contact alloc] initWithFirstName:@"Jessica" lastName:@"Abrams" email:@"jess_abrams@lambdastudents.com" phoneNumber:@"333-333-3333"] autorelease]
     ]];
 }
 
