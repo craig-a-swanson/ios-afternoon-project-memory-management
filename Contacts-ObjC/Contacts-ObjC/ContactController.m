@@ -42,7 +42,6 @@
 
 - (void)addNewContact:(Contact *)contact {
     [self.internalContacts addObject:contact];
-    NSLog(@"Number of contacts: %lu", (unsigned long)self.internalContacts.count);
 }
 
 - (void)addTestData {
@@ -53,10 +52,9 @@
     ]];
 }
 
-//- (void)dealloc {
-//    [_contacts release];
-//    [_internalContacts release];
-//    [super dealloc];
-//}
+- (void)dealloc {
+    [_contacts release];
+    [super dealloc];
+}
 
 @end

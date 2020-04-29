@@ -35,26 +35,11 @@ void *ContactControllerContext = &ContactControllerContext;
                            context:ContactControllerContext];
 }
 
-//- (void)setContactController:(ContactController *)contactController {
-//
-//    if (contactController != _contactController) {
-//
-//        // Remove Observers
-//        [_contactController removeObserver:self
-//                                forKeyPath:@"contacts"
-//                                   context:ContactControllerContext];
-//
-//        [self willChangeValueForKey:@"contactController"];
-//        _contactController = contactController;
-//        [self didChangeValueForKey:@"contactController"];
-//
-//        // Add Observers
-//        [_contactController addObserver:self
-//                             forKeyPath:@"contacts"
-//                                options:0
-//                                context:ContactControllerContext];
-//    }
-//}
+- (void)unregisterAsObserverForController:(ContactController *)contactController {
+    [contactController removeObserver:self
+                           forKeyPath:@"contacts"
+                              context:ContactControllerContext];
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == ContactControllerContext) {
@@ -101,8 +86,10 @@ void *ContactControllerContext = &ContactControllerContext;
     }
 }
 
-//- (void)dealloc {
-//    self.contactController = nil;
-//}
+- (void)dealloc {
+    [self unregisterAsObserverForController:self.contactController];
+    
+    [super dealloc];
+}
 
 @end

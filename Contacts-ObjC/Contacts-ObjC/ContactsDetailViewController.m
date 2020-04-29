@@ -70,6 +70,7 @@
     [_lastNameTextField release];
     [_emailTextField release];
     [_phoneTextField release];
+    [_contactController release];
     [super dealloc];
 }
 
