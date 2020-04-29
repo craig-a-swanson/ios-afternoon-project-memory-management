@@ -25,6 +25,8 @@ void *ContactControllerContext = &ContactControllerContext;
     [super viewDidLoad];
     
     self.contactController = [[[ContactController alloc] init] autorelease];
+    
+    // The observer is registered in viewDidLoad and unregistered in dealloc
     [self registerAsObserverForContactController:self.contactController];
 }
 
@@ -88,7 +90,6 @@ void *ContactControllerContext = &ContactControllerContext;
 
 - (void)dealloc {
     [self unregisterAsObserverForController:self.contactController];
-    
     [super dealloc];
 }
 

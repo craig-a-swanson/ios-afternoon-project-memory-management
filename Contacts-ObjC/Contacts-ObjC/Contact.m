@@ -10,7 +10,10 @@
 
 @implementation Contact
 
-- (instancetype)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email phoneNumber:(NSString *)phoneNumber {
+- (instancetype)initWithFirstName:(NSString *)firstName
+                         lastName:(NSString *)lastName
+                            email:(NSString *)email
+                      phoneNumber:(NSString *)phoneNumber {
     
     if (self = [super init]) {
         _firstName = [firstName copy];

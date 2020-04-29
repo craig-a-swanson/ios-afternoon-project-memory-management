@@ -17,14 +17,10 @@
 
 @implementation ContactController
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self addTestData];
-//        NSSortDescriptor *lastNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES];
-//        NSArray *sortedContacts = [self.internalContacts sortedArrayUsingDescriptors:@[lastNameSortDescriptor]];
-//        self.internalContacts = [NSMutableArray arrayWithArray:sortedContacts];
     }
     return self;
 }
@@ -41,6 +37,11 @@
 }
 
 - (void)addNewContact:(Contact *)contact {
+    [self.internalContacts addObject:contact];
+}
+
+- (void)editExistingContact:(Contact *)contact :(NSUInteger) contactIndex {
+    [self.internalContacts removeObjectAtIndex:contactIndex];
     [self.internalContacts addObject:contact];
 }
 
