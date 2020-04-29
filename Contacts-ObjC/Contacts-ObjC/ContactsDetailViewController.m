@@ -7,7 +7,9 @@
 //
 
 #import "ContactsDetailViewController.h"
+#import "ContactsTableViewController.h"
 #import "Contact.h"
+#import "ContactController.h"
 
 @interface ContactsDetailViewController ()
 
@@ -21,6 +23,7 @@
 @implementation ContactsDetailViewController
 
 @synthesize contact = _contact;
+@synthesize contactController = _contactController;
 
 - (void)setContact:(Contact *)contact {
     [contact retain];
@@ -29,9 +32,26 @@
     [self updateViews];
 }
 
+- (void)setContactController:(ContactController *)contactController {
+    
+    [contactController retain];
+    [_contactController release];
+    [self willChangeValueForKey:@"contactController"];
+    _contactController = contactController;
+    [self didChangeValueForKey:@"contactController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self updateViews];
+}
+
+- (IBAction)saveContact:(id)sender {
+    Contact *newContact = [[[Contact alloc] initWithFirstName:self.firstNameTextField.text lastName:self.lastNameTextField.text email:self.emailTextField.text phoneNumber:self.phoneTextField.text] autorelease];
+    [self.contactController addNewContact:newContact];
+    NSMutableArray *contacts = [_contactController mutableArrayValueForKey:@"contacts"];
+    [contacts addObject:newContact];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updateViews {

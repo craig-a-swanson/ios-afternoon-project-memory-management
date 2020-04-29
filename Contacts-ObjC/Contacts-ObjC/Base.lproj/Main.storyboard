@@ -124,7 +124,11 @@
                         <viewLayoutGuide key="safeArea" id="dAQ-VJ-VeP"/>
                     </view>
                     <navigationItem key="navigationItem" id="UQR-QR-RSS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4XH-5x-5Mw"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4XH-5x-5Mw">
+                            <connections>
+                                <action selector="saveContact:" destination="5Vj-yN-K0n" id="xAN-JT-dvE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="ZfT-DB-U1S" id="e01-7z-rq6"/>

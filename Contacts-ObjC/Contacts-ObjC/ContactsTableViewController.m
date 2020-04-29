@@ -11,6 +11,8 @@
 #import "Contact.h"
 #import "ContactsDetailViewController.h"
 
+void *ContactControllerContext = &ContactControllerContext;
+
 @interface ContactsTableViewController ()
 
 @property (nonatomic, retain) ContactController *contactController;
@@ -23,6 +25,45 @@
     [super viewDidLoad];
     
     self.contactController = [[[ContactController alloc] init] autorelease];
+    [self registerAsObserverForContactController:self.contactController];
+}
+
+- (void)registerAsObserverForContactController:(ContactController *)contactController {
+    [contactController addObserver:self
+                        forKeyPath:@"contacts"
+                           options:0
+                           context:ContactControllerContext];
+}
+
+//- (void)setContactController:(ContactController *)contactController {
+//
+//    if (contactController != _contactController) {
+//
+//        // Remove Observers
+//        [_contactController removeObserver:self
+//                                forKeyPath:@"contacts"
+//                                   context:ContactControllerContext];
+//
+//        [self willChangeValueForKey:@"contactController"];
+//        _contactController = contactController;
+//        [self didChangeValueForKey:@"contactController"];
+//
+//        // Add Observers
+//        [_contactController addObserver:self
+//                             forKeyPath:@"contacts"
+//                                options:0
+//                                context:ContactControllerContext];
+//    }
+//}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (context == ContactControllerContext) {
+        if ([keyPath isEqualToString:@"contacts"]) {
+            [self.tableView reloadData];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 #pragma mark - Table view data source
@@ -52,7 +93,16 @@
         ContactsDetailViewController *contactsDetailVC = segue.destinationViewController;
 
         contactsDetailVC.contact = [self.contactController.contacts objectAtIndex:indexPath.row];
+        contactsDetailVC.contactController = self.contactController;
+        
+    } else if ([segue.identifier isEqualToString:@"AddContactSegue"]) {
+        ContactsDetailViewController *destinationVC = segue.destinationViewController;
+        destinationVC.contactController = self.contactController;
     }
 }
+
+//- (void)dealloc {
+//    self.contactController = nil;
+//}
 
 @end

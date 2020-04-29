@@ -22,9 +22,9 @@
     self = [super init];
     if (self) {
         [self addTestData];
-        NSSortDescriptor *lastNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES];
-        NSArray *sortedContacts = [self.internalContacts sortedArrayUsingDescriptors:@[lastNameSortDescriptor]];
-        self.internalContacts = [NSMutableArray arrayWithArray:sortedContacts];
+//        NSSortDescriptor *lastNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES];
+//        NSArray *sortedContacts = [self.internalContacts sortedArrayUsingDescriptors:@[lastNameSortDescriptor]];
+//        self.internalContacts = [NSMutableArray arrayWithArray:sortedContacts];
     }
     return self;
 }
@@ -38,6 +38,11 @@
         _internalContacts = [[NSMutableArray alloc] init];
     }
     return _internalContacts;
+}
+
+- (void)addNewContact:(Contact *)contact {
+    [self.internalContacts addObject:contact];
+    NSLog(@"Number of contacts: %lu", (unsigned long)self.internalContacts.count);
 }
 
 - (void)addTestData {

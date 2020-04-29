@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, retain) NSArray<Contact *> *contacts;
 
+- (void)addNewContact:(Contact *)contact;
+
 @end
 
 NS_ASSUME_NONNULL_END
