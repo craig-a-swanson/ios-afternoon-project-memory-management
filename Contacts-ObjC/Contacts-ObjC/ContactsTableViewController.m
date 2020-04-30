@@ -21,6 +21,7 @@ void *ContactControllerContext = &ContactControllerContext;
 
 @implementation ContactsTableViewController
 
+// MARK: - View Controller Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -30,6 +31,7 @@ void *ContactControllerContext = &ContactControllerContext;
     [self registerAsObserverForContactController:self.contactController];
 }
 
+// MARK: - Observer Methods
 - (void)registerAsObserverForContactController:(ContactController *)contactController {
     [contactController addObserver:self
                         forKeyPath:@"contacts"
@@ -54,6 +56,8 @@ void *ContactControllerContext = &ContactControllerContext;
 }
 
 #pragma mark - Table view data source
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -88,6 +92,7 @@ void *ContactControllerContext = &ContactControllerContext;
     }
 }
 
+// MARK: - Deallocation
 - (void)dealloc {
     [self unregisterAsObserverForController:self.contactController];
     [super dealloc];
